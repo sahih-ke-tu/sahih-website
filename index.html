@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sahih Ke Tu - Official</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@700&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --sahih-orange: #F68B1E;
@@ -29,7 +31,7 @@
             overflow-x: hidden;
         }
 
-        /* Halftone Background */
+        /* Halftone Background - Mobile First */
         .manga-app {
             width: 100%;
             max-width: 500px;
@@ -41,6 +43,7 @@
             background-size: 15px 15px;
             padding-bottom: 60px;
             box-shadow: 0px 0px 30px rgba(0,0,0,0.8);
+            transition: max-width 0.4s ease; /* Smooth transition when resizing window */
         }
 
         /* Header & Logo */
@@ -106,7 +109,8 @@
 
         .manga-panel {
             width: 100%;
-            height: 250px; /* Fixed height for the fluid effect */
+            height: 250px; 
+            box-sizing: border-box; /* Fixes the box bleeding out */
             border: 6px solid var(--manga-black);
             background-color: var(--manga-black);
             position: relative;
@@ -123,15 +127,19 @@
 
         /* The Fluid Image Reveal */
         .manga-panel img {
+            position: absolute; /* Fixes the image shifting issue */
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            clip-path: circle(0% at 50% 120%); /* Hides image initially */
+            display: block;
+            clip-path: circle(0% at 50% 120%); 
             transition: clip-path 0.7s cubic-bezier(0.77, 0, 0.175, 1), transform 0.7s ease;
         }
 
         .manga-panel:hover img {
-            clip-path: circle(150% at 50% 50%); /* Expands like liquid */
+            clip-path: circle(150% at 50% 50%); 
             transform: scale(1.05);
         }
 
@@ -152,7 +160,7 @@
         }
 
         .manga-panel:hover .pre-hover-text {
-            opacity: 0; /* Fades out when liquid reveals the image */
+            opacity: 0; 
         }
 
         /* Pulsing TikTok Button */
@@ -186,6 +194,59 @@
             animation: none;
             transform: scale(1.05);
         }
+
+        /* =========================================
+           RESPONSIVE DESIGN (TABLET & DESKTOP)
+           ========================================= */
+        
+        /* When the screen is wider than 768px (Tablets and Desktops) */
+        @media (min-width: 768px) {
+            
+            /* 1. Widen the main white canvas */
+            .manga-app {
+                max-width: 1100px; 
+                border-left: 12px solid var(--manga-black);
+                border-right: 12px solid var(--manga-black);
+            }
+
+            /* 2. Turn the panel container into a 3-column Grid */
+            .panel-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 30px;
+                padding: 40px;
+            }
+
+            /* 3. Make panels slightly taller on desktop */
+            .manga-panel {
+                height: 350px; 
+            }
+
+            /* 4. Stop the TikTok button from stretching too wide */
+            .tiktok-btn {
+                width: 400px; 
+                margin-top: 60px;
+                margin-bottom: 60px;
+            }
+
+            /* 5. Adjust the Header */
+            .header { padding: 35px 0; }
+            .logo-sticker { width: 140px; height: 140px; }
+            .logo-sticker span { font-size: 32px; }
+            .lightbulb { top: 70px; right: 20px; font-size: 28px; }
+        }
+
+        /* Medium tablets - stack the last panel */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .panel-container {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+            .manga-panel:nth-child(3) {
+                grid-column: span 2; 
+                height: 250px;
+            }
+        }
+
     </style>
 </head>
 <body>

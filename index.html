@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahih Ke Tu - Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@700&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sahih-orange: #F68B1E;
+            --manga-black: #1A1A1A;
+            --manga-white: #FFFFFF;
+        }
+
+        /* Basic Setup & Smooth Scroll Prep */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-smooth iframe { pointer-events: none; }
+
+        body {
+            background-color: #111;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Halftone Background */
+        .manga-app {
+            width: 100%;
+            max-width: 500px;
+            background: var(--manga-white);
+            border-left: 8px solid var(--manga-black);
+            border-right: 8px solid var(--manga-black);
+            min-height: 100vh;
+            background-image: radial-gradient(circle, #ddd 1.2px, transparent 1px);
+            background-size: 15px 15px;
+            padding-bottom: 60px;
+            box-shadow: 0px 0px 30px rgba(0,0,0,0.8);
+        }
+
+        /* Header & Logo */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 25px 0;
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            border-bottom: 5px solid var(--manga-black);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo-sticker {
+            width: 120px;
+            height: 120px;
+            background: var(--sahih-orange);
+            border: 6px solid #fff;
+            border-radius: 50%;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            transform: rotate(-5deg);
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo-sticker:hover { transform: rotate(0deg) scale(1.1); }
+
+        .logo-sticker span {
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900;
+            line-height: 0.85;
+            font-size: 26px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        }
+
+        .lightbulb {
+            position: absolute;
+            right: 18px;
+            top: 58px;
+            font-size: 22px;
+            animation: glow 1.5s infinite alternate;
+            transform: rotate(15deg);
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 2px #fff); opacity: 0.7; }
+            to { filter: drop-shadow(0 0 10px #fff); opacity: 1; }
+        }
+
+        /* Fluid Manga Panels */
+        .panel-container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .manga-panel {
+            width: 100%;
+            height: 250px; /* Fixed height for the fluid effect */
+            border: 6px solid var(--manga-black);
+            background-color: var(--manga-black);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 10px 10px 0px var(--manga-black);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .manga-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 12px 12px 0px var(--sahih-orange);
+        }
+
+        /* The Fluid Image Reveal */
+        .manga-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: circle(0% at 50% 120%); /* Hides image initially */
+            transition: clip-path 0.7s cubic-bezier(0.77, 0, 0.175, 1), transform 0.7s ease;
+        }
+
+        .manga-panel:hover img {
+            clip-path: circle(150% at 50% 50%); /* Expands like liquid */
+            transform: scale(1.05);
+        }
+
+        /* Text that shows BEFORE you hover */
+        .pre-hover-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--manga-white);
+            font-family: 'Bangers', cursive;
+            font-size: 2.2rem;
+            text-align: center;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .manga-panel:hover .pre-hover-text {
+            opacity: 0; /* Fades out when liquid reveals the image */
+        }
+
+        /* Pulsing TikTok Button */
+        .tiktok-btn {
+            display: block;
+            margin: 40px auto;
+            width: 80%;
+            padding: 18px;
+            background: var(--sahih-orange);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            border: 6px solid var(--manga-black);
+            box-shadow: 8px 8px 0px var(--manga-black);
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .tiktok-btn:hover { 
+            background: var(--manga-black); 
+            color: var(--sahih-orange); 
+            animation: none;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="manga-app">
+    
+    <div class="header">
+        <div class="logo-sticker">
+            <span>SAHIH</span>
+            <span>KE TU</span>
+            <div class="lightbulb">💡</div>
+        </div>
+    </div>
+
+    <div class="panel-container">
+        
+        <div class="manga-panel" onclick="window.open('https://www.tiktok.com/@hamba_nya84')">
+            <div class="pre-hover-text">Semak Adat<br>Vs Syariat</div>
+            <img src="https://drive.google.com/thumbnail?id=16QmHQhtNZYuTx_HGPVvdDZjR4Fwi4UxK&sz=w800" alt="Panel 1">
+        </div>
+
+        <div class="manga-panel" onclick="window.open('https://www.tiktok.com/@hamba_nya84')">
+            <div class="pre-hover-text" style="color: var(--sahih-orange);">Dalil Sahih</div>
+            <img src="https://drive.google.com/thumbnail?id=10kD68oRSihVieDHq4cxuxvCzC1Oewgwi&sz=w800" alt="Panel 2">
+        </div>
+
+        <div class="manga-panel" onclick="window.open('https://www.tiktok.com/@hamba_nya84')">
+            <div class="pre-hover-text">Tonton Video<br>Terkini!</div>
+            <img src="https://drive.google.com/thumbnail?id=1Oyw3gTaBgYBinx55We0tKJJVTPBop32a&sz=w800" alt="Panel 3">
+        </div>
+
+    </div>
+
+    <a href="https://www.tiktok.com/@sahihketu?_r=1&_t=ZS-93srd6NJYLU" target="_blank" class="tiktok-btn">Explore TikTok Kami!</a>
+
+</div>
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+<script>
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+        touchMultiplier: 2,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+</script>
+
+</body>
+</html>

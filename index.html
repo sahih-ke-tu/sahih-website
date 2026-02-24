@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CT8HM66KPS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-CT8HM66KPS');
-</script>
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sahih Ke Tu - Official</title>
@@ -118,7 +118,6 @@
 
         .manga-panel {
             width: 100%;
-            /* Removed fixed height so it adapts to the image naturally */
             box-sizing: border-box; 
             border: 6px solid var(--manga-black);
             background-color: var(--manga-black);
@@ -137,7 +136,7 @@
         /* The Fluid Image Reveal */
         .manga-panel img {
             width: 100%;
-            height: auto; /* Lets the image decide its own height without cropping */
+            height: auto; 
             display: block;
             clip-path: circle(0% at 50% 120%); 
             transition: clip-path 0.7s cubic-bezier(0.77, 0, 0.175, 1), transform 0.7s ease;
@@ -168,10 +167,37 @@
             opacity: 0; 
         }
 
+        /* Pulsing WhatsApp Button */
+        .whatsapp-btn {
+            display: block;
+            margin: 40px auto 20px auto;
+            width: 80%;
+            padding: 18px;
+            background: #25D366; 
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            border: 6px solid var(--manga-black);
+            box-shadow: 8px 8px 0px var(--manga-black);
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+            animation-delay: 1s; /* Berdegup berselang-seli dengan butang TikTok */
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+
+        .whatsapp-btn:hover { 
+            background: var(--manga-black); 
+            color: #25D366; 
+            animation: none;
+            transform: scale(1.05);
+        }
+
         /* Pulsing TikTok Button */
         .tiktok-btn {
             display: block;
-            margin: 40px auto;
+            margin: 20px auto 60px auto;
             width: 80%;
             padding: 18px;
             background: var(--sahih-orange);
@@ -204,39 +230,34 @@
            RESPONSIVE DESIGN (TABLET & DESKTOP)
            ========================================= */
         
-        /* When the screen is wider than 768px (Tablets and Desktops) */
         @media (min-width: 768px) {
-            
-            /* 1. Widen the main white canvas */
             .manga-app {
                 max-width: 1100px; 
                 border-left: 12px solid var(--manga-black);
                 border-right: 12px solid var(--manga-black);
             }
-
-            /* 2. Turn the panel container into a 3-column Grid */
             .panel-container {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr); 
                 gap: 30px;
                 padding: 40px;
             }
-
-            /* 3. Stop the TikTok button from stretching too wide */
+            .whatsapp-btn {
+                width: 400px; 
+                margin-top: 50px;
+                margin-bottom: 20px;
+            }
             .tiktok-btn {
                 width: 400px; 
-                margin-top: 60px;
+                margin-top: 20px;
                 margin-bottom: 60px;
             }
-
-            /* 4. Adjust the Header */
             .header { padding: 35px 0; }
             .logo-sticker { width: 140px; height: 140px; }
             .logo-sticker span { font-size: 32px; }
             .lightbulb { top: 70px; right: 20px; font-size: 28px; }
         }
 
-        /* Medium tablets - stack the last panel */
         @media (min-width: 768px) and (max-width: 1024px) {
             .panel-container {
                 grid-template-columns: repeat(2, 1fr); 
@@ -264,21 +285,22 @@
         
         <div class="manga-panel" onclick="window.open('https://www.tiktok.com/@hamba_nya84')">
             <div class="pre-hover-text">Semak Adat<br>Vs Syariat</div>
-            <img src="https://drive.google.com/thumbnail?id=16QmHQhtNZYuTx_HGPVvdDZjR4Fwi4UxK&sz=w800" alt="Panel 1">
+            <img src="panel1.jpg" alt="Panel 1">
         </div>
 
         <div class="manga-panel" onclick="window.open('https://www.tiktok.com/@hamba_nya84')">
             <div class="pre-hover-text" style="color: var(--sahih-orange);">Dalil Sahih</div>
-            <img src="https://drive.google.com/thumbnail?id=10kD68oRSihVieDHq4cxuxvCzC1Oewgwi&sz=w800" alt="Panel 2">
+            <img src="panel2.jpg" alt="Panel 2">
         </div>
 
         <div class="manga-panel" onclick="window.open('https://www.tiktok.com/@hamba_nya84')">
             <div class="pre-hover-text">Tonton Video<br>Terkini!</div>
-            <img src="https://drive.google.com/thumbnail?id=1Oyw3gTaBgYBinx55We0tKJJVTPBop32a&sz=w800" alt="Panel 3">
+            <img src="panel3.jpg" alt="Panel 3">
         </div>
 
     </div>
 
+    <a href="https://whatsapp.com/channel/0029VbCXcs4CBtxBdNEle02B" target="_blank" class="whatsapp-btn">Sertai WhatsApp Channel!</a>
     <a href="https://www.tiktok.com/@sahihketu?_r=1&_t=ZS-93srd6NJYLU" target="_blank" class="tiktok-btn">Explore TikTok Kami!</a>
 
 </div>
